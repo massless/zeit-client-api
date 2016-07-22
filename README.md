@@ -49,6 +49,6 @@ TOKEN=[token] npm test
 
 ## License
 
-ISC © Contributors
+Code released under the [MIT license](https://github.com/massless/zeit-client-api/blob/master/LICENSE). © Contributors
 
 [zeit.co]: <https://zeit.co/>
