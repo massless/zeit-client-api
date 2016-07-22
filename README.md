@@ -31,7 +31,7 @@ This will generate new platform-appropriate files at the root level that are imp
 ## Usage
 First, ```npm run start [platform]``` then use this library to help build your client.
 ```js
-import { API } from '@massless/zeit-client-api';
+import { API } from 'zeit-client-api';
 
 API.setToken(YOUR_ZEIT_TOKEN)
    .deployments()
