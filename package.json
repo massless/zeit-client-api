@@ -1,0 +1,26 @@
+{
+  "name": "zeit-client-api",
+  "version": "0.0.1",
+  "description": "Support for Javascript clients managing a Zeit account.",
+  "main": "index.js",
+  "scripts": {
+    "test": "npm run start node && ./node_modules/ava/cli.js -v",
+    "start": "node shims.js"
+  },
+  "author": "Chris Wetherell <chris@massless.org> (http://massless.org)",
+  "license": "MIT",
+  "repository": {
+    "type" : "git",
+    "url" : "https://github.com/massless/zeit-client-api.git"
+  },
+  "devDependencies": {
+    "ava": "^0.15.2",
+    "babel-preset-es2015": "^6.9.0"
+  },
+  "dependencies": {
+    "localforage": "^1.4.2",
+    "node-fetch": "^1.5.3",
+    "node-localstorage": "^1.3.0",
+    "whatwg-fetch": "^1.0.0"
+  }
+}
