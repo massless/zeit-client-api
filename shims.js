@@ -16,7 +16,7 @@ const fs = require('fs');
 function makeShims(platform) {
   makeShim(platform, 'fetch');
   makeShim(platform, 'storage');
-};
+}
 
 /*
 * @param  {String} platform
@@ -28,7 +28,7 @@ function makeShim(platform, lib) {
   let destFilePath = `${__dirname}/${lib}.js`;
   let sourceFilePath = `${__dirname}/shims/${lib}.${platform}.js`;
   fs.writeFileSync(destFilePath, fs.readFileSync(sourceFilePath));
-};
+}
 
 if (!module.parent) {
     // We're assuming Node is the default platform being used

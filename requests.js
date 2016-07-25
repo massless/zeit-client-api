@@ -30,7 +30,10 @@ class NowRequest {
   fetched(response) {
     return response.text()
             .then(text => JSON.parse(text))
-            .catch(err => {err: err});
+            .catch(err => {
+              console.error(err);
+              return {err: err};
+            });
   }
 
   /** @return {Object} */

@@ -1,0 +1,26 @@
+{
+    "parser": "babel-eslint",
+    "plugins": [],
+    "extends": ["eslint:recommended"],
+    "parserOptions": {
+        "ecmaFeatures": {
+            "arrowFunctions": true,
+            "blockBindings": true,
+            "generators": true
+        }
+    },
+    "env": {
+        "browser": true,
+        "node": true,
+        "es6": true
+    },
+    "globals": {
+        "define": true,
+        "fetch": true,
+        "import", true,
+        "require": true
+    },
+    "rules": {
+        "no-console": 0
+    }
+}
