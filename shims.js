@@ -30,7 +30,8 @@ function makeShim(platform, lib) {
   fs.writeFileSync(destFilePath, fs.readFileSync(sourceFilePath));
 }
 
-if (!module.parent) {
+// When creating shims from a Node process, say from the command line...
+if (process.argv) {
     // We're assuming Node is the default platform being used
   (() => { makeShims((process.argv[2] || 'node').toLowerCase()); })();
 }
