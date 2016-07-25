@@ -9,18 +9,30 @@ const fs = require('fs');
  * e.g. Making remote server requests requires fetch() for React Native and
  * "node-fetch" in Node.js and "whatwg-fetch" when in a browser.
  */
-(() => {
-  // We're assuming React Native is the default platform being used
-  let platform = (process.argv[2] || 'reactnative').toLowerCase();
-  makeShim(platform, 'fetch');
-  makeShim(platform, 'storage');
-})();
 
 /**
  * @param  {String} platform
- * @param  {String} lib
  */
+function makeShims(platform) {
+  makeShim(platform, 'fetch');
+  makeShim(platform, 'storage');
+};
+
+/*
+* @param  {String} platform
+* @param  {String} lib
+*/
 function makeShim(platform, lib) {
-  console.log(`Creating the ${platform} ${lib} shim for the zeit-client-engine`);
-  fs.createReadStream(`shims/${lib}.${platform}.js`).pipe(fs.createWriteStream(`${lib}.js`));
+  console.log(`Creating the ${platform} ${lib} shim for the zeit-client-api`);
+
+  let destFilePath = `${__dirname}/${lib}.js`;
+  let sourceFilePath = `${__dirname}/shims/${lib}.${platform}.js`;
+  fs.writeFileSync(destFilePath, fs.readFileSync(sourceFilePath));
+};
+
+if (!module.parent) {
+    // We're assuming Node is the default platform being used
+  (() => { makeShims((process.argv[2] || 'node').toLowerCase()); })();
 }
+
+module.exports = makeShims;
