@@ -47,7 +47,7 @@ Zeit.API.setToken(TOKEN).deleteDeployment(DEPLOY_ID);
 Zeit.API.setToken(TOKEN).files(DEPLOY_ID);
 ```
 ```js
-# Here's how to deploy to Zeit.
+# Here is how to deploy to Zeit.
 const DEPLOY_CONTENTS = {
     package: {
     name: DEPLOY_NAME,
