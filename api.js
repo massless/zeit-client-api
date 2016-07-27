@@ -50,6 +50,9 @@ let API = {
    */
   files: deployId => now(`deployments/${deployId}/files`),
 
+  /** @return {Promise<Boolean, Object>} */
+  ok: () => now('aliases').then(() => true),
+
   /**
    * @param  {String} token
    * @return {Object} the API itself

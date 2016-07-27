@@ -72,6 +72,15 @@ test.after('delete deployment', t => {
             .catch(e => error(e, t));
 });
 
+test('ok', t => {
+  t.plan(1);
+
+  return API.setToken(TOKEN)
+            .ok()
+            .then(ok => t.true(ok))
+            .catch(e => error(e, t));
+});
+
 /**
  * ----- HELPERS -----
  */
