@@ -15,7 +15,7 @@ test.serial('deploy', t => {
     t.truthy(data.uid);
     t.truthy(data.host);
     t.truthy(data.state);
-  }).catch(t.fail);
+  }).catch(e => error(e, t));
 });
 
 test('aliases', t => {
@@ -24,7 +24,7 @@ test('aliases', t => {
   return API.setToken(TOKEN)
             .aliases()
             .then(data => t.true(Array.isArray(data)))
-            .catch(t.fail);
+            .catch(e => error(e, t));
 });
 
 test('deployments', t => {
@@ -33,7 +33,7 @@ test('deployments', t => {
   return API.setToken(TOKEN)
             .deployments()
             .then(data => t.true(data.length > 0))
-            .catch(t.fail);
+            .catch(e => error(e, t));
 });
 
 test('deployment', t => {
@@ -42,7 +42,7 @@ test('deployment', t => {
   return API.setToken(TOKEN)
             .deployment(DEPLOY_ID)
             .then(data => t.is(data.uid, DEPLOY_ID))
-            .catch(t.fail);
+            .catch(e => error(e, t));
 });
 
 test('files', t => {
@@ -51,7 +51,7 @@ test('files', t => {
   return API.setToken(TOKEN)
             .files(DEPLOY_ID)
             .then(data => t.is(data.length, 2))
-            .catch(t.fail);
+            .catch(e => error(e, t));
 });
 
 test('file', t => {
@@ -60,7 +60,7 @@ test('file', t => {
   return getFileIdByName('package.json')
     .then(fileId => API.setToken(TOKEN).file(DEPLOY_ID, fileId))
     .then(data => t.is(data.name, DEPLOY_NAME))
-    .catch(t.fail);
+    .catch(e => error(e, t));
 });
 
 test.after('delete deployment', t => {
@@ -69,7 +69,7 @@ test.after('delete deployment', t => {
   return API.setToken(TOKEN)
             .deleteDeployment(DEPLOY_ID)
             .then(data => t.is(data.state, API.DEPLOY_STATUS.DELETED))
-            .catch(t.fail);
+            .catch(e => error(e, t));
 });
 
 /**
@@ -97,6 +97,14 @@ function deploy() {
               DEPLOY_ID = data && data.uid || null;
               return data;
             });
+}
+
+/**
+ * @param  {Error} e
+ * @param  {Object} t test
+ */
+function error(e, t) {
+  t.fail(e.toString());
 }
 
 /**
