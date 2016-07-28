@@ -2,20 +2,20 @@
 
 A library for easily sharing code among Zeit clients written in Javascript.
 
-> Zeit is a service that makes Node.js cloud apps much easier to deploy. See [zeit.co] for more information about it.
+> Zeit is a company making `now()` – which deploys Node.js cloud apps very easily. See [zeit.co] for more information about it.
 
-## Install
-First, install it via npm...
+## Install for Node
 ```sh
 npm install --save zeit-client-api
+npm explore zeit-client-api -- npm run start node
 ```
-...then initialize it for the platform you're using.
+## Install for React Native
 ```sh
-npm explore zeit-client-api -- npm run start [platform]
+npm install --save zeit-client-api
+npm explore zeit-client-api -- npm run start reactnative
 ```
-The start script currently accepts either ```node```, ```reactnative```, or ```browser``` for [platform].
-
-This API tries to generate the appropriate dependencies for these platforms. For example, if ```reactnative``` is requested then this will use [React Native's fetch] instead of [node-fetch].
+## Multiple platform support because...
+Universal / isomorphic apps are amazing! So this API is built so that it's easy to maintain going forward. To this end it generates the appropriate dependencies for each major platform. For example, if ```reactnative``` is requested then this will use [React Native's fetch] instead of [node-fetch].
 
 It also relies on local storage to store the API token.
 
