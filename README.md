@@ -14,10 +14,10 @@ npm explore zeit-client-api -- npm run start node
 npm install --save zeit-client-api
 npm explore zeit-client-api -- npm run start reactnative
 ```
-## Multiple platform support because...
+## Multiple platform support is included here because...
 Universal / isomorphic apps are amazing! So this API is built so that it's easy to maintain going forward. To this end it generates the appropriate dependencies for each major platform. For example, if ```reactnative``` is requested then this will use [React Native's fetch] instead of [node-fetch].
 
-It also relies on local storage to store the API token.
+This library also relies on local storage to store the API token so you can reuse it later or easily discard it.
 
 ## Usage
 
@@ -32,6 +32,10 @@ Zeit.API.setToken(YOUR_ZEIT_TOKEN)
 
 ## API Examples
 All methods return Promises.
+
+```js
+Zeit.API.setToken(TOKEN).alias(DEPLOY_ID, HOST_OR_URL);
+```
 
 ```js
 Zeit.API.setToken(TOKEN).aliases();
