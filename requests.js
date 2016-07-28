@@ -28,12 +28,16 @@ class NowRequest {
    * @return {Object}
    */
   fetched(response) {
-    if (response.status !== 200) {
-      throw new Error('Zeit authorization failed');
-    }
-
     return response.text()
                    .then(text => JSON.parse(text))
+                   .then(obj => {
+                     if (response.status !== 200) {
+                       if (obj.error) throw new Error(obj.error.message);
+                       throw new Error('Not authorized');
+                     }
+
+                     return obj;
+                   })
                    .catch(e => { throw e });
   }
 
