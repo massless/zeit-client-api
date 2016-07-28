@@ -4,6 +4,16 @@ const Cache = require('./cache');
 const now = require('./requests').now;
 
 let API = {
+  /**
+   * @param  {String} deployId
+   * @param  {String} alias
+   * @return {Promise<Object, Object>}
+   */
+  alias: (deployId, alias) => now(`deployments/${deployId}/aliases`, {
+    method: 'POST',
+    body: JSON.stringify({alias: alias})
+  }),
+
   /** @return {Promise<Array, Object>} */
   aliases: () => now('aliases').then(data => data && data.aliases || []),
 
@@ -66,6 +76,10 @@ let API = {
     return API;
   }
 }
+
+API.RESPONSE_STATUS = {
+  SUCCESS: 'SUCCESS'
+};
 
 API.DEPLOY_STATUS = {
   BOOTED: 'BOOTED',
