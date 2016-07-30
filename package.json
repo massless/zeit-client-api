@@ -1,6 +1,6 @@
 {
   "name": "zeit-client-api",
-  "version": "0.4.0",
+  "version": "0.4.5",
   "description": "Support for Javascript clients managing a Zeit account.",
   "main": "index.js",
   "scripts": {

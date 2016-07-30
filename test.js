@@ -26,8 +26,7 @@ test.serial('deploy', t => {
 testIfAlias.serial('alias', t => {
   t.plan(2);
 
-  return API.setToken(TOKEN)
-            .alias(DEPLOY_ID, ALIAS)
+  return API.alias(DEPLOY_ID, ALIAS)
             .then(data => {
               t.truthy(data.uid);
               t.truthy(data.created);
@@ -38,8 +37,7 @@ testIfAlias.serial('alias', t => {
 test('aliases', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .aliases()
+  return API.aliases()
             .then(data => t.true(Array.isArray(data)))
             .catch(e => error(e, t));
 });
@@ -47,8 +45,7 @@ test('aliases', t => {
 test('deployments', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .deployments()
+  return API.deployments()
             .then(data => t.true(data.length > 0))
             .catch(e => error(e, t));
 });
@@ -56,8 +53,7 @@ test('deployments', t => {
 test('deployment', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .deployment(DEPLOY_ID)
+  return API.deployment(DEPLOY_ID)
             .then(data => t.is(data.uid, DEPLOY_ID))
             .catch(e => error(e, t));
 });
@@ -65,8 +61,7 @@ test('deployment', t => {
 test('files', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .files(DEPLOY_ID)
+  return API.files(DEPLOY_ID)
             .then(data => t.is(data.length, 2))
             .catch(e => error(e, t));
 });
@@ -83,8 +78,7 @@ test('file', t => {
 testIfAlias('delete alias', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .aliases()
+  return API.aliases()
             .then(data => data.find(a => a.alias === ALIAS))
             .then(alias => API.setToken(TOKEN).deleteAlias(alias.uid))
             .then(data => t.is(data.status, API.RESPONSE_STATUS.SUCCESS))
@@ -94,8 +88,7 @@ testIfAlias('delete alias', t => {
 test.after('delete deployment', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .deleteDeployment(DEPLOY_ID)
+  return API.deleteDeployment(DEPLOY_ID)
             .then(data => t.is(data.state, API.DEPLOY_STATUS.DELETED))
             .catch(e => error(e, t));
 });
@@ -103,8 +96,7 @@ test.after('delete deployment', t => {
 test('ok', t => {
   t.plan(1);
 
-  return API.setToken(TOKEN)
-            .ok()
+  return API.ok()
             .then(ok => t.true(ok))
             .catch(e => error(e, t));
 });

@@ -31,28 +31,30 @@ Zeit.API.setToken(YOUR_ZEIT_TOKEN)
 ```
 
 ## API Examples
+Once you call setToken() you don't need to call it again, btw. It just works because the token is in LocalStorage.
+
 All methods return Promises.
 
 ```js
-Zeit.API.setToken(TOKEN).alias(DEPLOY_ID, HOST_OR_URL);
+Zeit.API.alias(DEPLOY_ID, HOST_OR_URL);
 ```
 
 ```js
-Zeit.API.setToken(TOKEN).aliases();
+Zeit.API.aliases();
 ```
 
 ```js
-Zeit.API.setToken(TOKEN).deployments();
+Zeit.API.deployments();
 ```
 
 ```js
-Zeit.API.setToken(TOKEN).deployment(DEPLOY_ID);
+Zeit.API.deployment(DEPLOY_ID);
 ```
 ```js
-Zeit.API.setToken(TOKEN).deleteDeployment(DEPLOY_ID);
+Zeit.API.deleteDeployment(DEPLOY_ID);
 ```
 ```js
-Zeit.API.setToken(TOKEN).files(DEPLOY_ID);
+Zeit.API.files(DEPLOY_ID);
 ```
 ```js
 # A brief example of how to deploy to Zeit.
@@ -66,7 +68,7 @@ const DEPLOY_CONTENTS = {
       'res.end("zeit-client-api-test");' +
     '}).listen();'
 };
-Zeit.API.setToken(TOKEN).deploy(DEPLOY_CONTENTS);
+Zeit.API.deploy(DEPLOY_CONTENTS);
 ```
 
 ## Testing
